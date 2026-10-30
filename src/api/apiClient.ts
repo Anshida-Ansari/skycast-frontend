@@ -1,6 +1,18 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api/v1';
+// Safely normalize API Base URL to avoid duplicate or missing '/api/v1'
+const normalizeApiBaseUrl = (rawUrl?: string): string => {
+  if (!rawUrl || !rawUrl.trim()) {
+    return '/api/v1';
+  }
+  const cleanUrl = rawUrl.trim().replace(/\/+$/, '');
+  if (cleanUrl.endsWith('/api/v1')) {
+    return cleanUrl;
+  }
+  return `${cleanUrl}/api/v1`;
+};
+
+const API_BASE_URL = normalizeApiBaseUrl(import.meta.env.VITE_API_URL);
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,

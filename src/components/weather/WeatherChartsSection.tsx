@@ -44,57 +44,56 @@ export const WeatherChartsSection: React.FC = () => {
   }));
 
   return (
-    <div className="h-full flex flex-col justify-between rounded-3xl bg-slate-900/80 border border-slate-800/80 p-5 md:p-6 backdrop-blur-md shadow-xl">
-      <div>
-        {/* Header and Tab Controls with clean non-wrapping layout */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800/60">
-          <div className="flex items-center gap-2 shrink-0">
-            <ChartIcon className="w-5 h-5 text-blue-400 shrink-0" />
-            <h2 className="text-lg font-bold text-white tracking-tight whitespace-nowrap">
-              Forecast Trends
-            </h2>
-          </div>
-
-          {/* Tab Buttons */}
-          <div className="flex items-center bg-slate-950/70 border border-slate-800 rounded-xl p-1 self-start sm:self-auto shrink-0">
-            <button
-              onClick={() => setActiveTab('hourlyTemp')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
-                activeTab === 'hourlyTemp'
-                  ? 'bg-blue-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <TrendingUp className="w-3.5 h-3.5" />
-              <span>24h Temp</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('precipitation')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
-                activeTab === 'precipitation'
-                  ? 'bg-blue-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <BarChart3 className="w-3.5 h-3.5" />
-              <span>Precipitation</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('weeklyTrend')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
-                activeTab === 'weeklyTrend'
-                  ? 'bg-blue-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <ChartIcon className="w-3.5 h-3.5" />
-              <span>7-Day Range</span>
-            </button>
-          </div>
+    <div className="h-full flex flex-col rounded-3xl bg-slate-900/80 border border-slate-800/80 p-5 md:p-6 backdrop-blur-md shadow-xl">
+      {/* Header and Tab Controls with clean non-wrapping layout */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800/60 shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
+          <ChartIcon className="w-5 h-5 text-blue-400 shrink-0" />
+          <h2 className="text-lg font-bold text-white tracking-tight whitespace-nowrap">
+            Forecast Trends
+          </h2>
         </div>
 
-        {/* Chart Canvas */}
-        <div className="w-full h-72 sm:h-80 md:h-[340px] pt-2">
+        {/* Tab Buttons */}
+        <div className="flex items-center bg-slate-950/70 border border-slate-800 rounded-xl p-1 self-start sm:self-auto shrink-0">
+          <button
+            onClick={() => setActiveTab('hourlyTemp')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+              activeTab === 'hourlyTemp'
+                ? 'bg-blue-600 text-white shadow'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <TrendingUp className="w-3.5 h-3.5" />
+            <span>24h Temp</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('precipitation')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+              activeTab === 'precipitation'
+                ? 'bg-blue-600 text-white shadow'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <BarChart3 className="w-3.5 h-3.5" />
+            <span>Precipitation</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('weeklyTrend')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+              activeTab === 'weeklyTrend'
+                ? 'bg-blue-600 text-white shadow'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <ChartIcon className="w-3.5 h-3.5" />
+            <span>7-Day Range</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Chart Canvas - flex-1 stretches to dynamically match 7-Day Forecast height */}
+      <div className="w-full flex-1 min-h-[350px] pt-2">
           {activeTab === 'hourlyTemp' && (
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={hourlyData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -271,7 +270,6 @@ export const WeatherChartsSection: React.FC = () => {
             </ResponsiveContainer>
           )}
         </div>
-      </div>
     </div>
   );
 };

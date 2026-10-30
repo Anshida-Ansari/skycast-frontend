@@ -25,17 +25,16 @@ export const DailyForecastSection: React.FC = () => {
   const range = Math.max(globalMax - globalMin, 1);
 
   return (
-    <div className="h-full flex flex-col justify-between rounded-3xl bg-slate-900/80 border border-slate-800/80 p-5 md:p-6 backdrop-blur-md shadow-xl">
-      <div>
-        <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-800/60">
-          <div className="flex items-center gap-2">
-            <CalendarDays className="w-5 h-5 text-blue-400" />
-            <h2 className="text-lg font-bold text-white tracking-tight">7-Day Forecast</h2>
-          </div>
-          <span className="text-xs text-slate-400 font-medium">Daily Outlook</span>
+    <div className="h-full flex flex-col rounded-3xl bg-slate-900/80 border border-slate-800/80 p-5 md:p-6 backdrop-blur-md shadow-xl">
+      <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-800/60 shrink-0">
+        <div className="flex items-center gap-2">
+          <CalendarDays className="w-5 h-5 text-blue-400" />
+          <h2 className="text-lg font-bold text-white tracking-tight">7-Day Forecast</h2>
         </div>
+        <span className="text-xs text-slate-400 font-medium">Daily Outlook</span>
+      </div>
 
-        <div className="space-y-2.5">
+      <div className="space-y-2.5 flex-1 flex flex-col justify-between">
           {weatherData.daily.map((day, idx) => {
             // Calculate bar offsets
             const leftPercent = Math.max(0, ((day.minTemperature - globalMin) / range) * 100);
@@ -108,7 +107,6 @@ export const DailyForecastSection: React.FC = () => {
             );
           })}
         </div>
-      </div>
     </div>
   );
 };
