@@ -29,7 +29,9 @@ export const DailyForecastSection: React.FC = () => {
       <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-800/60 shrink-0">
         <div className="flex items-center gap-2">
           <CalendarDays className="w-5 h-5 text-blue-400" />
-          <h2 className="text-lg font-bold text-white tracking-tight">7-Day Forecast</h2>
+          <h2 className="text-lg font-bold text-white tracking-tight">
+            {weatherData.daily.length}-Day Forecast
+          </h2>
         </div>
         <span className="text-xs text-slate-400 font-medium">Daily Outlook</span>
       </div>
